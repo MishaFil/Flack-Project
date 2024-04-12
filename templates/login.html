@@ -1,0 +1,22 @@
+<!-- login.html -->
+{% extends 'base.html' %}
+{% block title %}Вход в систему{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
+{% endblock %}
+{% block body %}
+<section class="login-container">
+    <h2>Вход в систему</h2>
+    <form method="POST">
+        <div>
+            <label for="username">Логин:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Войти</button>
+    </form>
+</section>
+{% endblock %}

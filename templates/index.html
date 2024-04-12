@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+    Главная страница
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="content">
+            <h1>Добро пожаловать на главную страницу!</h1>
+            <form action="{{ url_for('weather_forecast') }}" method="POST">
+                <label for="city">Введите название города:</label>
+                <input type="text" id="city" name="city">
+                <button type="submit">Получить прогноз погоды</button>
+            </form>
+
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+
+            {% if weather_forecast %}
+                <h2>Прогноз погоды на 3 дня:</h2>
+                <table>
+                    <tr>
+                        <th>День недели</th>
+                        <th>Дата</th>
+                        <th>Температура днем</th>
+                        <th>Температура ночью</th>
+                    </tr>
+                    {% for day_forecast in weather_forecast %}
+                        <tr>
+                            <td>{{ day_forecast.day_of_week }}</td>
+                            <td>{{ day_forecast.date }}</td>
+                            <td>{{ day_forecast.day_temperature }}</td>
+                            <td>{{ day_forecast.night_temperature }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
